@@ -2,15 +2,13 @@ package course.springcorebasic.discount;
 
 import course.springcorebasic.member.Grade;
 import course.springcorebasic.member.Member;
-import course.springcorebasic.member.MemberRepository;
-import course.springcorebasic.member.MemoryMemberRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class RateDiscountPolicyTest {
 
-    MemberRepository memberRepository = new MemoryMemberRepository();
     DiscountPolicy discountPolicy = new RateDiscountPolicy();
 
     @Test
@@ -18,7 +16,7 @@ class RateDiscountPolicyTest {
     void vip_o() {
         Member member = new Member(1L, "A", Grade.VIP);
         int discountPrice = discountPolicy.discount(member, 10000);
-        Assertions.assertThat(discountPrice).isEqualTo(1000);
+        assertThat(discountPrice).isEqualTo(1000);
     }
 
     @Test
@@ -26,6 +24,6 @@ class RateDiscountPolicyTest {
     void vip_x() {
         Member member = new Member(2L, "B", Grade.BASIC);
         int discountPrice = discountPolicy.discount(member, 10000);
-        Assertions.assertThat(discountPrice).isNotEqualTo(1000);
+        assertThat(discountPrice).isNotEqualTo(1000);
     }
 }

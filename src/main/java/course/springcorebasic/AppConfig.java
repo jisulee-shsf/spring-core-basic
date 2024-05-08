@@ -1,7 +1,7 @@
 package course.springcorebasic;
 
 import course.springcorebasic.discount.DiscountPolicy;
-import course.springcorebasic.discount.FixDiscountPolicy;
+import course.springcorebasic.discount.RateDiscountPolicy;
 import course.springcorebasic.member.MemberRepository;
 import course.springcorebasic.member.MemberService;
 import course.springcorebasic.member.MemberServiceImpl;
@@ -24,6 +24,6 @@ public class AppConfig {
     }
 
     public DiscountPolicy discountPolicy() {
-        return new FixDiscountPolicy();
+        return new RateDiscountPolicy();
     }
 }
