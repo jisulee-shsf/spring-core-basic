@@ -1,17 +1,15 @@
 package course.springcorebasic.member;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
+@Getter // 싱글톤 보장 테스트용
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
-
-    @Autowired
-    public MemberServiceImpl(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
 
     @Override
     public void join(Member member) {
@@ -21,10 +19,5 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Member findMember(Long memberId) {
         return memberRepository.findById(memberId);
-    }
-
-    // 싱글톤 보장 테스트용
-    public MemberRepository getMemberRepository() {
-        return memberRepository;
     }
 }
