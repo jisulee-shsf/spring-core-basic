@@ -4,7 +4,9 @@ import course.springcorebasic.member.Grade;
 import course.springcorebasic.member.Member;
 import course.springcorebasic.member.MemberRepository;
 import course.springcorebasic.member.MemoryMemberRepository;
+import org.springframework.stereotype.Component;
 
+@Component
 public class FixDiscountPolicy implements DiscountPolicy {
 
     private final MemberRepository memberRepository = new MemoryMemberRepository();
