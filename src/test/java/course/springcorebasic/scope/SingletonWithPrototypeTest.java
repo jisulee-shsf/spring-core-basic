@@ -2,8 +2,8 @@ package course.springcorebasic.scope;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import jakarta.inject.Provider;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
 
@@ -25,17 +25,16 @@ public class SingletonWithPrototypeTest {
         assertThat(count2).isEqualTo(1);
     }
 
-
     static class ClientBean {
 
-        private final ObjectProvider<PrototypeBean> prototypeBeanObjectProvider;
+        private final Provider<PrototypeBean> prototypeBeanObjectProvider;
 
-        public ClientBean(ObjectProvider<PrototypeBean> prototypeBeanObjectProvider) {
+        public ClientBean(Provider<PrototypeBean> prototypeBeanObjectProvider) {
             this.prototypeBeanObjectProvider = prototypeBeanObjectProvider;
         }
 
         public int logic() {
-            PrototypeBean prototypeBean = prototypeBeanObjectProvider.getObject();
+            PrototypeBean prototypeBean = prototypeBeanObjectProvider.get();
             prototypeBean.addCount();
             return prototypeBean.getCount();
         }
