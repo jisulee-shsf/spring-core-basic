@@ -6,6 +6,8 @@ import jakarta.annotation.PreDestroy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 @Scope(value = "request")
 public class MyLogger {
@@ -23,6 +25,7 @@ public class MyLogger {
 
     @PostConstruct
     public void init() {
+        uuid = UUID.randomUUID().toString();
         System.out.println("[" + uuid + "] " + "request scope bean create: " + this);
     }
 
